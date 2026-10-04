@@ -1,5 +1,7 @@
 # Energieoptimale Fahrweise: Rollen schlägt Langsamfahren (Streamlit-Demo)
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-energiefahrweise-demo.streamlit.app/)**
+
 Interaktive **Fall-Demo** zur energieoptimalen Fahrweise eines Zuges im Portfolio von [Sebastian Hanisch](https://sebastianhanisch.net) (Operations Research und Machine Learning).
 **Sechster Baustein der Reihe Bahn/Schienenverkehr** nach dem [Taktfahrplan](https://github.com/sebastian-hanisch/taktfahrplan-demo), dem [Trassenkonflikt](https://github.com/sebastian-hanisch/trassenkonflikt-demo) und der
 [Fahrzeitreserve](https://github.com/sebastian-hanisch/fahrzeitreserve-demo) (dort geht es um die Verteilung der Reserve, hier um ihre Nutzung).
@@ -123,3 +125,7 @@ streamlit run app.py
 Die Messreihe neu erzeugen: `python tools/sweep.py`.
 
 Gebaut mit Streamlit, Plotly, NumPy, pandas und fpdf2.
+
+---
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zum Thema: [Schienenverkehr optimieren](https://sebastianhanisch.net/schienenverkehr-optimierung.html).
