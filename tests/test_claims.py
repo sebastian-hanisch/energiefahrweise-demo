@@ -38,7 +38,7 @@ def test_meta_and_counts(res):
 
 
 def test_the_table_in_the_readme(s10):
-    for t, name in (("flach", "flach"), ("wellig", "wellig"), ("rampe", "rampe"), ("tempolimit", "tempolimit"), ("gefaelle", "gefaelle")):
+    for t, name in (("flach", "flach"), ("wellig", "wellig"), ("rampe", "rampe"), ("tempolimit", "tempolimit"), ("gefaelle", "Gefälle")):
         s = s10[t]
         line = f"| {name} | {pm(s['saving_a'], s['saving_a_se'])} | {pm(s['saving_coast'], s['saving_coast_se'])} | {pm(s['saving_dp'], s['saving_dp_se'])} | {pm(s['dp_vs_coast'], s['dp_vs_coast_se'])} |"
         assert line.replace("**−0.0", "**-0.0").replace("−", "-") in README.replace("−", "-"), line

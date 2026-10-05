@@ -152,4 +152,18 @@ class FB:
                 r = self.coast_point(float(vc), Tb)
                 if r is not None and r["E"] < best["E"]:
                     best = r
+            # Der zulässige Reisetempo-Bereich (Rollpunkt trifft das Budget) endet am Rand, wo schon sofortiges Rollen nicht mehr langsam genug ist; im Gefälle ist er sehr schmal,
+            # und die Energie ist dort am kleinsten. Deshalb wird der Rand per Bisektion gesucht und zusammen mit Stützstellen davor geprüft.
+            lo, hi = a_vcap, vmax
+            if self.coast_point(vmax, Tb) is None:
+                for _ in range(C.FB_EDGE_ITERS):
+                    mid = 0.5 * (lo + hi)
+                    if self.coast_point(mid, Tb) is not None:
+                        lo = mid
+                    else:
+                        hi = mid
+                for vc in np.linspace(a_vcap, lo, refine + 1):
+                    r = self.coast_point(float(vc), Tb)
+                    if r is not None and r["E"] < best["E"]:
+                        best = r
         return b1, best

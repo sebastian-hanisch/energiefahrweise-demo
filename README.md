@@ -42,7 +42,7 @@ train control*, Transportation Research Part B 94 (2016). Neu ist hier die Messr
 ## Methodik
 
 - **Gleichmäßig langsamer** und **Rollpunkt-Regel** (`efw_strategies.py`): Vorwärts-Rückwärts-Simulator (volle Zugkraft, spätestes Bremsen). Gleichmäßig langsamer senkt das Höchsttempo per Bisektion, bis die Fahrzeit
-  das Budget erreicht. Die Rollpunkt-Regel schaltet ab einem Rollpunkt die Zugkraft ab; der Rollpunkt trifft das Budget, das Reisetempo ist unter einigen Kandidaten energieminimal (die stärkste Regel mit ein bis zwei Parametern).
+  das Budget erreicht. Die Rollpunkt-Regel schaltet ab einem Rollpunkt die Zugkraft ab; der Rollpunkt trifft das Budget, das Reisetempo ist unter einigen Kandidaten und am Rand des zulässigen Bereichs (per Bisektion gesucht) energieminimal. Im Gefälle ist dieser Bereich nur etwa 0,2 m/s breit; ohne die Randsuche lag die Regel dort bis zu 15 % über der Gittersuche (Orakel-Prüfung, `tests/test_oracle_efw.py`).
 - **Optimum** (`efw_dp.py`): dynamische Programmierung über Ort (250-m-Zellen) und Geschwindigkeit (0,1 m/s) mit einem Lagrange-Parameter auf der Zeit: Minimiert wird Energie plus λ mal Zeit, λ per Bisektion so, dass die Fahrzeit das
   Budget erreicht. Übergänge: Halten, Beschleunigen und Bremsen auf Rasterzielen sowie Rollen, volle Zugkraft und volle Bremsung mit interpoliertem Zielzustand; die Vorwärtsspur läuft im kontinuierlichen Zustand.
   Gewählt wird die zulässige Spur, der Wert ist eine obere Schranke des wahren Optimums.
@@ -58,10 +58,10 @@ Die Formel „Energie je Strecke ~ v²“ sagt bei 10 % **17.4 %** voraus.
 | Profiltyp | gleichmäßig langsamer | Rollpunkt-Regel | Optimum (DP) | Optimum gegen Rollpunkt-Regel |
 |---|---|---|---|---|
 | flach | **18.9 ± 0.1 %** | **31.9 ± 0.2 %** | **31.6 ± 0.2 %** | **−0.4 ± 0.0 %** |
-| wellig | **14.1 ± 0.4 %** | **32.5 ± 1.1 %** | **35.7 ± 1.2 %** | **4.8 ± 1.1 %** |
+| wellig | **14.1 ± 0.4 %** | **32.5 ± 1.1 %** | **35.7 ± 1.2 %** | **4.7 ± 1.1 %** |
 | rampe | **14.4 ± 0.2 %** | **25.5 ± 0.5 %** | **25.5 ± 0.5 %** | **−0.0 ± 0.0 %** |
 | tempolimit | **36.7 ± 1.5 %** | **41.4 ± 1.3 %** | **47.7 ± 1.0 %** | **10.5 ± 0.8 %** |
-| gefaelle | **20.9 ± 0.6 %** | **32.6 ± 1.0 %** | **57.9 ± 2.2 %** | **37.3 ± 3.3 %** |
+| Gefälle | **20.9 ± 0.6 %** | **35.0 ± 0.9 %** | **57.9 ± 2.2 %** | **35.2 ± 3.4 %** |
 
 | Frage | Befund |
 |---|---|

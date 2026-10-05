@@ -22,6 +22,7 @@ FB_H = 50.0                 # Zellenlänge des Vorwärts-Rückwärts-Simulators 
 FB_CANDIDATES = 8           # Reisetempo-Kandidaten der Rollpunkt-Regel
 FB_REFINE = 5
 FB_COAST_ITERS = 14
+FB_EDGE_ITERS = 14          # Bisektionsschritte auf den Rand des zulässigen Reisetempo-Bereichs der Rollpunkt-Regel
 FB_A_ITERS = 22
 
 # ------------------------------------------------------------------ Regler
