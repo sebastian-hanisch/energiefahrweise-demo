@@ -44,6 +44,17 @@ abschalten) macht daraus Strecke. Die Demo vergleicht bei **gleicher Fahrzeit** 
 (dynamische Programmierung über Ort und Geschwindigkeit) und zeigt, **wo die Formel falsch liegt** und **wo die einfache Regel schon genügt**.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/energiefahrweise-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein Zug darf zwischen zwei Halten etwas länger brauchen als in der schnellsten Fahrt. Diese Fahrzeitreserve lässt sich nutzen, um Energie zu sparen. Gleichmäßig langsamer zu fahren hilft, aber weniger als möglich: In der schnellsten Fahrt geht ein großer Teil der Energie in der Bremse verloren. Besser ist **Rollen**: Der Zug schaltet früher die Zugkraft ab und läuft aus, so wird Bewegungsenergie zu Strecke. Die Demo vergleicht gleichmäßiges Langsamfahren, eine einfache Regel mit einem Rollpunkt und das Optimum aus der dynamischen Programmierung und zeigt, wo die einfache Regel schon genügt. Die Zugwerte sind willkürlich gewählt: Die Aussagen gelten im Modell.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/energiefahrweise-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption(
     "Sechster Baustein der Reihe Bahn/Schienenverkehr nach [Taktfahrplan](https://sebastianhanisch-taktfahrplan-demo.streamlit.app/), "
     "[Fahrzeitreserve](https://sebastianhanisch-fahrzeitreserve-demo.streamlit.app/) (dort geht es um die Verteilung der Reserve, hier um ihre Nutzung) und "
@@ -221,6 +232,27 @@ eine obere Schranke dessen, was Optimierung gegenüber einer Fahrerregel bringt.
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/energiefahrweise-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind der Zug, die Strecke mit Steigungen und Tempolimits und die Fahrzeitreserve $r$. Gesucht ist die Fahrweise mit der geringsten Energie bei gleicher Fahrzeit und ihre Ersparnis gegen die schnellste Fahrt.
+
+| Symbol | Bedeutung |
+|---|---|
+| $F$ | mittlere Zugkraft in einer Zelle (negativ beim Bremsen) |
+| $m_\mathrm{eff}$, $a$ | wirksame Masse (mit Drehmassenzuschlag), Beschleunigung |
+| $R(v)$ | Fahrwiderstand bei Geschwindigkeit $v$ |
+| $m g \sin\alpha$ | Kraft durch die Steigung (Steigungswinkel $\alpha$) |
+| $dx$, $dt$ | Länge der Zelle, Fahrzeit in der Zelle |
+| $\eta$ | Anteil der Bremsarbeit, der gutgeschrieben wird (ohne Rückspeisung null) |
+| $E_k$, $dt_k$ | Energie und Fahrzeit in Zelle $k$ |
+| $\lambda$ | Preis der Zeit (Lagrange-Parameter) |
+| $r$ | Fahrzeitreserve gegen die schnellste Fahrt |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/energiefahrweise-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Bewegung.** Je Zelle konstante Beschleunigung $a$: $F = m_\mathrm{eff}\, a + R(v) + m g \sin\alpha$ mit mittlerer Zugkraft $F$, Zeit $dt = 2\,dx/(v_i + v_j)$ und Energie $\max(F, 0)\,dx - \eta\, \max(-F, 0)\,dx$.
